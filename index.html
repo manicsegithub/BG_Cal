@@ -13,59 +13,24 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
-	
-	/*
-      function calculate(shareprice,eps,g,y){
-        
-       var n1 = parseFloat(document.getElementById("shareprice").value);
-       var n2 = parseFloat(document.getElementById("eps").value);
-       var n3 = parseFloat(document.getElementById("g").value);
-       var n4 = parseFloat(document.getElementById("y").value);
-       //var ishare = parseFloat(document.getElementById("ishare").value);
-      // var n5 = 0;
-       //n5 =(shareprice,eps,g,y);
-       n1 = n2 * (8.5 + 2 * n3)*4.4/n4;
-       ishare = n1;
-       
-       
-	   //var n5 = parseFloat(document.getElementById("ishare").value) = ishare;
-	   document.getElementById("ishare").value = ishare;
 
-
-       var n5 = parseFloat(document.getElementById("ishare").value);
-       if(n5>0){
-        n5 = "OverValued";
-       }else{
-        n5 = "UnderValued";
-       }
-
-       document.getElementById("load").value = n5;
-       
-      }
-	  
-	  */
-	  
-	  function calculate(){
-	    var shareprice = parseFloat(document.getElementById("shareprice").value) || 0;
+      function calculate(){
+	var shareprice = parseFloat(document.getElementById("shareprice").value) || 0;
         var eps = parseFloat(document.getElementById("eps").value) || 0;
         var growthRate = parseFloat(document.getElementById("g").value) || 0;
         var yieldRate = parseFloat(document.getElementById("y").value) || 0;
 
         var intrinsicValue = (eps * (8.5 + 2 * growthRate) * 4.4) / yieldRate;
 
-		document.getElementById("ishare").value = intrinsicValue.toFixed(2);
+	document.getElementById("ishare").value = intrinsicValue.toFixed(2);
 		
-		var valuationDifference = shareprice - intrinsicValue;
+	var valuationDifference = shareprice - intrinsicValue;
         document.getElementById("load").value = valuationDifference.toFixed(2);
 		
-		var percentageDifference = (valuationDifference / intrinsicValue) * 100;
+	var percentageDifference = (valuationDifference / intrinsicValue) * 100;
         document.getElementById("percentageDifference").value = percentageDifference.toFixed(2) + "%";
-	  }
-	  
-	  
+   }	  
     </script>
-
-
 </head>
 <body style="margin-left: 3%;margin-right: 3%;">
     <nav class="navbar navbar-light bg-light" style="margin-top: %;margin-left: %;margin-right: %;">
@@ -174,8 +139,6 @@
         <div class="container-fluid" style="margin-top: %;margin-left: 0%;margin-right: 0dvi;background-color: rgb(219, 219, 219);">
           <p style="text-align: center;">2024 © BOSS Technologies Pvt Ltd - All Right Reserved</p>
         </div>
-      
-
 </body>
 </html>
 
