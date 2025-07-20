@@ -1,4 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG_Calc</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <style>
+        /* Mobile-first responsive styles */
+        .hero-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        .about-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        .formula-box {
+            border: 3px inset #ccc;
+            padding: 20px;
+            margin: 20px 10px;
+            font-size: 1.2rem;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .note-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 768px) {
+            .hero-image {
+                float: right;
+                width: 600px;
+                height: 400px;
+                margin-right: 3%;
+                margin-top: 20px;
+            }
+            
+            .about-image {
+                float: left;
+                width: 600px;
+                height: 400px;
+                margin-left: 3%;
+                margin-right: 3%;
+            }
+            
+            .formula-box {
+                margin: 20px 15%;
+                font-size: 2.5rem;
+            }
+            
+            .form-group {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            
+            .form-group label {
+                display: inline-block;
+                width: 300px;
+                margin-right: 1rem;
+                margin-bottom: 0;
+            }
+            
+            .form-group input {
+                width: 200px;
+                flex-shrink: 0;
+            }
+            
+            .form-group .note-text {
+                margin-left: 1rem;
+                flex: 1;
+            }
+        }
+        
+        /* Content spacing */
+        .content-section {
+            padding: 0 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .content-section {
+                padding: 0 5%;
+            }
+        }
+        
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        /* Header styles */
+        .main-title {
+            color: brown;
+            margin-top: 2rem;
+        }
+        
+        .subtitle {
+            color: burlywood;
+            margin-top: 1rem;
+        }
+        
+        .section-title {
+            color: burlywood;
+            margin-top: 2rem;
+        }
+    </style>
+
+    <script>
+        function calculate() {
+            var shareprice = parseFloat(document.getElementById("shareprice").value) || 0;
+            var eps = parseFloat(document.getElementById("eps").value) || 0;
+            var growthRate = parseFloat(document.getElementById("g").value) || 0;
+            var yieldRate = parseFloat(document.getElementById("y").value) || 0;
+
+            var intrinsicValue = (eps * (8.5 + 2 * growthRate) * 4.4) / yieldRate;
+
+            document.getElementById("ishare").value = intrinsicValue.toFixed(2);
+            
+            var valuationDifference = shareprice - intrinsicValue;
+            document.getElementById("load").value = valuationDifference.toFixed(2);
+            
+            var percentageDifference = (valuationDifference / intrinsicValue) * 100;
+            document.getElementById("percentageDifference").value = percentageDifference.toFixed(2) + "%";
+        }	  
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="font-weight: 500;">BG Brain</a>
+        </div>
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="clearfix">
+            <img src="./images.jpg" class="hero-image" alt="Graham Calculator"> 
+            <div class="content-section">
+                <h1 class="main-title">GRAHAM</h1>
+                <h1 class="subtitle">CALCULATOR..</h1>
+                <hr>
+                
+                <p style="font-weight: 700; margin-top: 2rem;">
+                    Benjamin Graham, also known as the father of value investing, 
+                    was known for picking cheap stocks. The graham calculator is a good tool 
+                    to find a rough estimate of the intrinsic value. It is simple and very easy to use.
+                </p>
+                <hr>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">GRAHAM'S FORMULA</h2>
+            <div style="margin-left: 20px;">
+                <p style="font-weight: 700; margin-top: 1rem;"> 
+                    V* = Intrinsic value per share <br>
+                    EPS = Earnings per share <br>
+                    g = Growth rate of the company <br>
+                    Y = 10 Yrs government bond rate
+                </p>
+            </div>
+
+            <div class="formula-box">
+                V* = EPS * (8.5 + 2g) * 4.4 / Y
+            </div>
+            
+            <hr>
+            <h3 class="text-center">SIMPLE GRAHAM CALCULATOR</h3>
+            <hr>
+            <p class="text-center" style="font-weight: 700; text-transform: uppercase;">
+                Find the intrinsic value of a company
+            </p>
+            <hr>
+            
+            <form onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label for="shareprice">Current Share price*</label>
+                    <input type="number" id="shareprice" oninput="calculate()" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eps">EPS for the last four quarters (EPS)*</label>
+                    <input type="number" id="eps" oninput="calculate()" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="g">Expected growth rate (g)*</label>
+                    <input type="number" id="g" oninput="calculate()" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="y">The current yield on AAA corporate bonds (Y)</label>
+                    <input type="number" value="4.22" id="y" oninput="calculate()" required>
+                    <div class="note-text">
+                        Currently, the AAA corporate bonds in the United States are yielding close to 4.22% per annum. 
+                        Please use this data carefully as it is subjected to change in future.
+                    </div>
+                </div>
+            </form>
+            
+            <hr>
+            <p class="text-center" style="font-weight: 700; text-transform: uppercase;">
+                The field below will show the intrinsic value of the stock based on graham's number
+            </p>
+            <hr>
+
+            <form>
+                <div class="form-group">
+                    <label for="ishare">Intrinsic Value per share</label>
+                    <input type="number" id="ishare" value="0.0" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="load">Difference</label>
+                    <input type="text" id="load" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="percentageDifference">Overvalued (%)</label>
+                    <input type="text" id="percentageDifference" value="0.00%" readonly>
+                    <div class="note-text">
+                        If the above value is positive, then the stock is OVERVALUED compared to the current market price of the stock. 
+                        Else, if it is negative, then the stock is UNDERVALUED at the current price.
+                    </div>
+                </div>
+            </form>
+            
+            <hr>
+        </div>
+
+        <div class="clearfix">
+            <img src="./2.jpg" alt="Benjamin Graham" class="about-image">
+            <div class="content-section">
+                <h2 class="text-center">ABOUT <span style="font-weight: 700; color: brown;">BEN GRAHAM</span></h2>
+                <h6 style="font-weight: 700; margin-top: 2rem;">
+                    BENJAMIN GRAHAM, ALSO KNOWN AS THE FATHER OF VALUE INVESTING, 
+                    WAS KNOWN FOR PICKING CHEAP STOCKS. HE HAS WRITTEN TWO ALL-TIME BEST SELLING BOOKS- 
+                    <span style="color: burlywood;">"THE INTELLIGENT INVESTOR" AND "SECURITY ANALYSIS"</span>.
+                </h6>
+                <p style="margin-top: 1rem;">
+                    Coincidently, he was also the mentor of the legendary investor (and the third richest person in the world), 
+                    Warren Buffett -who is supposed to inherit his value investing principles from Benjamin Graham.
+                </p>
+                <p style="margin-top: 1rem;">
+                    The Graham Calculator is a good tool to find a rough estimate of the intrinsic value. It is simple and very easy to use. 
+                    Although the values are not as pinpoint as the <span style="font-weight: 700;">DCF valuation method</span>, however, 
+                    it is a good tool for shorthand analysis. Moreover, as it is said: 
+                    <span style="font-weight: 700;">"It is better to be approximately right, than precisely wrong"</span>
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem; background-color: rgb(219, 219, 219); padding: 20px;">
+            <p class="text-center mb-0">2024 © BOSS Technologies Pvt Ltd - All Right Reserved</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +386,7 @@
 		   <!-- <button onclick="calculate()" style="margin-left: 54.6%;margin-right: 3%;margin-top: 1%; font-weight: 700;display: inline-block; width: 190px;">Calculate</button>  -->
 
           
-        </form>
+<!--         </form>
       </div>
       <hr style="margin-left: 15%;margin-right: 15%;">
       <p style="margin-left: 25%;margin-right: 3%; font-weight: 700;text-transform:uppercase;">The field below will show the intrinsic value of the stock based on graham's number</p>
@@ -111,13 +411,13 @@
         <input type="text" id="percentageDifference" value="0.00%" readonly>
 		-->
 		
-        <p style="margin-left: 55%; margin-right: 5%;margin-top: 1%;display: inline-block;width: 300px;">If the above value is positive, then the stock is OVERVALUED compared to the current market price of the stock. Else, if it is negative, then the stock is UNDERVALUED at the current price.</p>
+<!--         <p style="margin-left: 55%; margin-right: 5%;margin-top: 1%;display: inline-block;width: 300px;">If the above value is positive, then the stock is OVERVALUED compared to the current market price of the stock. Else, if it is negative, then the stock is UNDERVALUED at the current price.</p> -->
 		
 
        <!--  <button onclick="calculate()" style="margin-left: 54.6%;margin-right: 3%;margin-top: 1%; font-weight: 700;display: inline-block; width: 190px;">Calculate</button> -->
 
 
-      </form>
+<!--       </form>
       <hr style="margin-left: 5%;margin-right: 5%;">
 
       <div>
@@ -141,6 +441,9 @@
         </div>
 </body>
 </html>
+ -->
 
+ -->
+ -->
 
-
+ 
